@@ -11,4 +11,8 @@ import com.app.courseorganizer.data.local.entities.UserEntity
 )
 abstract class CourseOrganizerDatabase: RoomDatabase() {
     abstract val dao: CourseOrganizerDao
+
+    companion object {
+        const val name = "course_organizer_db"
+    }
 }

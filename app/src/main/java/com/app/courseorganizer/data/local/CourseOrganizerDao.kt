@@ -1,9 +1,6 @@
 package com.app.courseorganizer.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.app.courseorganizer.data.local.entities.CourseEntity
 import com.app.courseorganizer.data.local.entities.UserEntity
 
@@ -17,6 +14,11 @@ interface CourseOrganizerDao {
     //insert course
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertACourse(courseEntity: CourseEntity)
+
+    //insert courses
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMultipleCourses(courseEntities: List<CourseEntity>)
 
     //get all users
     @Query("SELECT * FROM users")
